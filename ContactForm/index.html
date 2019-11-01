@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>ContactForm sample</title>
+	<script type="text/javascript">
+	function api(f) {
+	$.ajax({
+	  cache: false,
+	  url: 'https://contactformweb.azurewebsites.net/',
+	  data: $(f).serialize(),
+	  datatype: 'json',
+	  contentType: 'application/json;charset=UTF-8',
+	  type: 'post',
+	  success: function(data) {
+		alert(JSON.stringify(data));
+	  }
+	});
+	}
+	</script>
+  </head>
+  <body>
+ <div class="container">
+<section class="mb-4">
+    <h2 class="h1-responsive font-weight-bold text-center my-4">ContactForm sample</h2>
+    <p class="text-center w-responsive mx-auto mb-5">Please use the form below to contact us:</p>
+
+    <div class="row">
+        <div class="col-12">
+            <form id="contact-form" name="contact-form" action="https://contactformweb.azurewebsites.net/" method="POST">
+                <div class="row">
+                    <div class="col-6">
+						<label for="ContactName" class="">Name:</label>
+						<input type="text" id="ContactName" name="ContactName" class="form-control">
+                    </div>
+                    <div class="col-6">
+						<label for="Email" class="">Email:</label>
+						<input type="email" id="Email" name="Email" class="form-control">
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="col-6">
+						<label for="Category" class="">Category:</label>
+						<select id="Category" name="Category" class="browser-default custom-select">
+						  <option value="" disabled selected>Choose your option</option>
+						  <option value="Inquiries">Inquiries</option>
+						  <option value="Sales">Sales</option>
+						  <option value="Support">Support</option>
+						</select>
+                    </div>
+                    <div class="col-6">
+						<label for="Phone" class="">Phone:</label>
+						<input type="tel" id="Phone" name="Phone" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+						<label for="Subject" class="">Subject:</label>
+						<input type="text" id="Subject" name="Subject" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+						<label for="Message">Message:</label>
+						<textarea type="text" id="Message" name="Message" rows="5" class="form-control md-textarea"></textarea>
+                    </div>
+                </div>
+            </form>
+
+			<div class="row mt-3">
+				<div class="col-4">
+					<a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send with Form POST</a>
+				</div>
+				<div class="col-4 text-center">
+					<div class="g-recaptcha" data-sitekey="6LcvicAUAAAAAOlSG-PMZ6lG6JadyKTutQFzJsox"></div>
+				</div>
+				<div class="col-4">
+					<a class="btn btn-primary float-right" onclick="api(document.getElementById('contact-form'));">Send with AJAX (REST API)</a>
+				</div>
+			</div>
+        </div>
+    </div>
+
+</section>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </body>
+</html>
