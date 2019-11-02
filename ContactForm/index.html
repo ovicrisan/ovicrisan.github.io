@@ -6,11 +6,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>ContactForm sample</title>
 	<script type="text/javascript">
+	const serialize_form = form => JSON.stringify(
+	  Array.from(new FormData(form).entries())
+		   .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+	);
+	
 	function api(f) {
 	$.ajax({
 	  cache: false,
 	  url: 'https://contactformweb.azurewebsites.net/',
-	  data: $(f).serialize(),
+	  data: serialize_form(f),
 	  datatype: 'json',
 	  contentType: 'application/json;charset=UTF-8',
 	  type: 'post',
@@ -67,19 +72,19 @@
 						<textarea type="text" id="Message" name="Message" rows="5" class="form-control md-textarea"></textarea>
                     </div>
                 </div>
-            </form>
 
-			<div class="row mt-3">
-				<div class="col-4">
-					<a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send with Form POST</a>
+				<div class="row mt-3">
+					<div class="col-4">
+						<a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send with Form POST</a>
+					</div>
+					<div class="col-4 text-center">
+						<div class="g-recaptcha" data-sitekey="6LcvicAUAAAAAOlSG-PMZ6lG6JadyKTutQFzJsox"></div>
+					</div>
+					<div class="col-4">
+						<a class="btn btn-primary float-right" onclick="api(document.getElementById('contact-form'));">Send with AJAX (REST API)</a>
+					</div>
 				</div>
-				<div class="col-4 text-center">
-					<div class="g-recaptcha" data-sitekey="6LcvicAUAAAAAOlSG-PMZ6lG6JadyKTutQFzJsox"></div>
-				</div>
-				<div class="col-4">
-					<a class="btn btn-primary float-right" onclick="api(document.getElementById('contact-form'));">Send with AJAX (REST API)</a>
-				</div>
-			</div>
+			</form>
         </div>
     </div>
 
