@@ -14,7 +14,7 @@
 	function api(f) {
 	$.ajax({
 	  cache: false,
-	  url: 'http://contactformfunc.azurewebsites.net/api/Submit',
+	  url: 'https://contactformweb.azurewebsites.net/',
 	  data: serialize_form(f),
 	  datatype: 'json',
 	  contentType: 'application/json;charset=UTF-8',
@@ -34,7 +34,7 @@
 
     <div class="row">
         <div class="col-12">
-            <form id="contact-form" name="contact-form" action="http://contactformfunc.azurewebsites.net/api/Submit" method="POST">
+            <form id="contact-form" name="contact-form" action="https://contactformweb.azurewebsites.net/" method="POST">
                 <div class="row">
                     <div class="col-6">
 						<label for="ContactName" class="">Name:</label>
